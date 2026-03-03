@@ -1,0 +1,36 @@
+﻿@model KeelteKooli.Models.Teacher
+@{
+    ViewBag.Title = "Edit Teacher";
+}
+
+<h2>Edit Teacher</h2>
+
+@using (Html.BeginForm("EditTeacher", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Nimi)
+        @Html.TextBoxFor(m => m.Nimi, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Kvalifikatsioon)
+        @Html.TextBoxFor(m => m.Kvalifikatsioon, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        @Html.Label("Email")
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
+    </div>
+
+    <div class="mb-3">
+        @Html.Label("New Password (optional)")
+        <input type="password" name="NewPassword" class="form-control" />
+        <small class="text-muted">Оставь пустым, если не нужно менять пароль</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a class="btn btn-secondary" href="@Url.Action("Teachers","Admin")">Cancel</a>
+}
